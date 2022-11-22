@@ -2,8 +2,12 @@ import datetime
 from django.db import connection
 from psycopg2 import sql  # install psycopg2
 
+# data will be dictionary
+
 
 def insert_data(self, table_name, data):
+    # data will be dictionary
+    
     column_list = list()
     value_list = list()
 
@@ -38,6 +42,7 @@ def select_table_data(self, table_name, where_clause_column=None, where_clause_v
 
 
 def update_table(self, table_name, data, where_clause_column, where_column_value):
+    # data will be dictionary
     sql_query = sql.SQL("UPDATE {table} SET {data} WHERE {where_clause_column} = {where_column_value}").format(
         data=sql.SQL(', ').join(
             sql.Composed([sql.Identifier(k), sql.SQL(" = "), sql.Placeholder(k)]) for k in data.keys()
